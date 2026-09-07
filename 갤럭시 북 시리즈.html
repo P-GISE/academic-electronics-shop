@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>모여모사</title>
+    <meta charset="utf-8" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 992px;
+  font-family: "Helvetica";
+}
+
+/* navbar */
+.navbar{
+  height: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.navbar #logo {
+  line-height: 60px;
+}
+.navbar #logo img{
+  vertical-align: middle;
+}
+
+.navbar #menu {
+  float: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+.navbar #menu li {
+  float:left;
+  margin-left: 50px;
+  line-height: 60px;
+}
+
+.navbar #menu li a {
+  text-decoration: none;
+  color: #545454 ;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* hero header */
+.hero-header{
+  height: 50px;
+  background-image: url("../images/hero_header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  
+}
+/* products */
+
+.products h3{
+  font-size: 24px;
+  color: #545454;
+  font-weight: bold;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.product-list{
+  width: 735px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product{
+  width: 225px;
+  text-align: center;
+  display: block;
+  color: #545454;
+  text-decoration: none;
+  float: left;
+  margin-left:10px;
+  margin-right: 10px;
+  margin-bottom: 80px;
+  
+}
+
+.product-name{
+  margin-top: 20px;
+  margin-bottom: 4px;
+  
+}
+.clearfix{
+  clear: both;
+}
+/* footer */
+.footer{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+
+}
+.footer a{
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color:darkblue;
+}
+  </style>
+
+  <body>
+    <div class="navbar">
+      <a href="카테고리.html" id="logo">
+        <img src="image/로고사진.jpg" width="180">
+        </a>
+
+        <ul id="menu">
+          <li><a href="#" onclick="sing()">고객센터</a></li>
+        <li><a href="#" onclick="hhh()">장바구니</a></li>
+        <li><a href="#" onclick="log()">로그인</a></li>
+    </div>
+
+    <div class="hero-header"></div>  
+    
+    
+    <div class="products">
+      <h3>삼성 노트북</h3>
+      <div class="product-list">
+        <a href="book3.html" class="product">
+          <img src="image/갤럭시 북 3.webp" width="225">
+          <div class="product-name">
+            갤럭시 북 3
+          </div>
+          <div class="product-price">1,190,000</div>
+        </a>
+
+        <a href="book3 360.html" class="product">
+          <img src="image/갤럭시 북 3 360.webp" width="225">
+          <div class="product-name">
+            갤럭시 북 3 360
+          </div>
+          <div class="product-price">1,900,000</div>
+        </a>
+        
+        <a href="book3 ultra.html" class="product">
+          <img src="image/갤럭시 북 3 울트라.webp" width="225">
+          <div class="product-name">
+            갤럭시 북 3 울트라
+          </div>
+          <div class="product-price">3,290,000</div>
+        </a>
+        
+        <a href="book3 pro.html" class="product">
+          <img src="image/갤럭시 북 3 프로.webp" width="225">
+          <div class="product-name">
+            갤럭시 북 3 프로
+          </div>
+          <div class="product-price">1,610,000</div>
+        </a>
+
+        <a href="book3 pro 360.html" class="product">
+          <img src="image/갤럭시 북 3 프로 360.webp" width="225">
+          <div class="product-name">
+            갤럭시 북 3 프로 360
+          </div>
+          <div class="product-price">2,290,000</div>
+        </a>
+
+        <a href="#" class="product">
+          <img src="image/모자이크.png" width="225">
+          <div class="product-name">
+            상품 준비중
+          </div>
+          <div class="product-price">-</div>
+        </a>
+
+        <a href="#" class="product">
+          <img src="image/모자이크.png" width="225">
+          <div class="product-name">
+            상품 준비중
+          </div>
+          <div class="product-price">-</div>
+        </a>
+
+        <a href="#" class="product">
+          <img src="image/모자이크.png" width="225">
+          <div class="product-name">
+            상품 준비중
+          </div>
+          <div class="product-price">-</div>
+        </a>
+
+        <a href="#" class="product">
+          <img src="image/모자이크.png" width="225">
+          <div class="product-name">
+            상품 준비중
+          </div>
+          <div class="product-price">-</div>
+        </a>
+  
+    
+    <div class="footer">
+      <a href="카테고리.html">
+        <img src="image/로고사진.jpg"height="100">
+      </a>
+    </div>
+
+
+    <script>
+      function sing() {
+      
+      window.open('고객문의.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+  
+    }
+  
+    function hhh() {
+      
+      window.open('장바구니.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+  
+    function log() {
+      
+      window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+    </script>
+  </body>
+</html>

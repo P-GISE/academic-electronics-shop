@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOYEOMOSA HELP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .contact-info {
+            max-width: 400px;
+        }
+        a {
+    text-decoration: none;
+    color:darkblue;
+}
+    </style>
+</head>
+<body>
+
+    <h1>고객센터</h1>
+
+    <form action="#" method="post">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">문의 내용</label>
+        
+        <select>
+            <option>제품</option>
+            <option>결제 환불</option>
+            <option>예약/주문</option>
+            <option>이벤트 혜택</option>
+        </select>
+        
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <button type="submit">문의하기</button>
+    </form>
+
+    <div class="contact-info">
+        <h2>연락처 정보</h2>
+        <p>고객센터 전화번호: 010-2335-5257</p>
+        <p>이메일: rnjseodyd1234@naver.com</p>
+    </div>
+
+</body>
+</html>

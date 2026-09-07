@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모여모사 : 로그인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            display: none;
+        }
+
+        a {
+    text-decoration: none;
+    color:darkblue;
+}
+    </style>
+</head>
+
+<body>
+    <form onsubmit="return validateForm()">
+        <label for="username">사용자</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirmPassword">비밀번호 재확인</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <span id="passwordError" class="error-message">비밀번호가 일치하지 않습니다.</span>
+
+        <button type="button" onclick="login()">가입하기</button>
+    </form>
+
+    <script>
+        function login() {
+            if (validateForm()) {
+                alert("가입되었습니다.");
+                // Redirect to a specific page after login (replace 'your_page.html' with the actual page URL)
+                window.location.href = '카테고리.html';
+            }
+        }
+
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var errorSpan = document.getElementById("passwordError");
+
+            if (password !== confirmPassword) {
+                errorSpan.style.display = "block";
+                return false;
+            } else {
+                errorSpan.style.display = "none";
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

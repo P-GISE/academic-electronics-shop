@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Book3 Ultra</title>
+  <script>
+    function validateSelection() {
+      const selectedColorButton = document.querySelector('.color-button.selected');
+      const storageOptions = document.querySelectorAll('[name="storage"]');
+
+      if (!selectedColorButton) {
+        alert('색상을 선택하세요.');
+        return;
+      }
+
+      let selectedStorageCount = 0;
+      storageOptions.forEach(option => {
+        if (option.checked) {
+          selectedStorageCount++;
+        }
+      });
+
+      if (selectedStorageCount !== 1) {
+        alert('저장 용량을 하나만 선택하세요.');
+        return;
+      }
+
+      window.location.href = '결제창.html';
+    }
+
+    function toggleButton(button) {
+      const colorButtons = document.querySelectorAll('.color-button');
+      colorButtons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+    }
+
+    function sing() {
+      
+      window.open('고객문의.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+  
+    }
+  
+    function hhh() {
+      
+      window.open('장바구니.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+  
+    function log() {
+      
+      window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+  </script>
+  <style>
+  a {
+    text-decoration: none;
+    color:darkblue;
+}
+
+  .iphone-container {
+      display: flex;
+      width: 80%;
+      margin: 0 auto; /* Centers the content horizontally */
+    }
+
+    .iphone-image {
+      flex: 1;
+      margin-right: 20px; /* Adds spacing between image and details */
+    }
+
+    .iphone-image img {
+      width: 100%; /* Makes sure the image fills its container */
+    }
+
+    .iphone-details {
+      flex: 1;
+      padding: 20px;
+    }
+    .iphone-details h2 {
+      font-size: 24px;
+    }
+
+    .color-options, .storage-options {
+      margin-top: 20px;
+    }
+
+    .color-option, .storage-option {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .color-button {
+      background-color: transparent;
+      border: 2px solid transparent;
+      padding: 0;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .color-button.selected {
+      border-color: #007BFF;
+    }
+
+    .color-button.color-button1.selected {
+      background-color: black;
+    }
+
+    .color-button.color-button2.selected {
+      background-color: pink;
+    }
+
+    .color-button.color-button3.selected {
+      background-color: green;
+    }
+
+    .color-button.color-button4.selected {
+      background-color: yellow;
+    }
+
+    .color-button.color-button5.selected {
+      color: gray;
+      background-color: gray;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+   
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 992px;
+  font-family: "Helvetica";
+}
+
+/* navbar */
+.navbar{
+  height: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.navbar #logo {
+  line-height: 60px;
+}
+.navbar #logo img{
+  vertical-align: middle;
+}
+
+.navbar #menu {
+  float: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+.navbar #menu li {
+  float:left;
+  margin-left: 50px;
+  line-height: 60px;
+}
+
+.navbar #menu li a {
+  text-decoration: none;
+  color: #545454 ;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* hero header */
+.hero-header{
+  height: 50px;
+  background-image: url("../images/hero_header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  
+}
+
+.footer{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+
+}
+.footer a{
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+.color-button.color-button1 {
+      background-color: black;
+    }
+
+    .color-button.color-button2 {
+      background-color: pink;
+    }
+
+    .color-button.color-button3 {
+      background-color: green;
+    }
+
+    .color-button.color-button4 {
+      background-color: yellow;
+    }
+
+    .color-button.color-button5 {
+      color: gray;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="카테고리.html" id="logo">
+      <img src="image/로고사진.jpg" width="180">
+      </a>
+      <ul id="menu">
+        <li><a href="#" onclick="sing()">고객센터</a></li>
+        <li><a href="#" onclick="hhh()">장바구니</a></li>
+        <li><a href="#" onclick="log()">로그인</a></li>
+      </ul>
+  </div>
+  <div class="hero-header"></div> 
+
+  <div class="iphone-container">
+    <div class="iphone-image">
+        <img src="image/갤럭시 북 3 울트라.webp" alt="iPhone Image" width="500" height="400">
+      </div>
+    <div class="iphone-details">
+      <h2>Galaxy Book3 Ultra</h2>
+      <div class="color-options">
+        <button class="color-button color-button1" onclick="toggleButton(this)"></button>
+        <button class="color-button color-button2" onclick="toggleButton(this)"></button>
+        <button class="color-button color-button3" onclick="toggleButton(this)"></button>
+        <button class="color-button color-button4" onclick="toggleButton(this)"></button>
+        <button class="color-button color-button5" onclick="toggleButton(this)"></button>
+      </div>
+      <div class="storage-options">
+        <span class="storage-option">
+          <input type="checkbox" id="storage64GB" name="storage" value="64GB">
+          <label for="storage64GB">64GB</label>
+        </span>
+        <span class="storage-option">
+          <input type="checkbox" id="storage128GB" name="storage" value="128GB">
+          <label for="storage128GB">128GB</label>
+        </span>
+        <span class="storage-option">
+          <input type="checkbox" id="storage256GB" name="storage" value="256GB">
+          <label for="storage256GB">256GB</label>
+        </span>
+        <span class="storage-option">
+          <input type="checkbox" id="storage512GB" name="storage" value="512GB">
+          <label for="storage512GB">512GB</label>
+        </span>
+        <span class="storage-option">
+          <input type="checkbox" id="storage1TB" name="storage" value="1TB">
+          <label for="storage1TB">1TB</label>
+        </span>
+      </div>
+
+      <button onclick="validateSelection()">구매하기</button>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="카테고리.html">
+      <img src="image/로고사진.jpg"height="100">
+    </a>
+  </div>
+</body>
+
+</body>
+</html>

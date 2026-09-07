@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Main Screen</title>
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=gKGBCb6vSviz5CZFnuVbWSRAmdNBd9l2jr8IGFlVxTn630F21RKmManQboJa54Lle8JlLWVGIfxKcnt9hx6Z9_2-N6vjsVRSYUWk7HzaclT6LoSuroZlwd1wAJ87JGNgPPivIAMT_b3zFQ1xw2D6yXektxdB7YpEXO4OEvLwsBVRmRwiwnsPn9vbk1GKxksKK41iCHfbPJ3uLhhmx01G9gDXZ71B1CsHTiomeweUzQx_7LkwPwXGwRsqnfUG6s5-44_gLnGK5AojMwFyKGZnYWsg6xLE61gRZ4XcSVKRh6Q" charset="UTF-8"></script><style>
+
+       *{
+          margin: 0;
+          padding: 0;
+        }
+
+        a {
+    text-decoration: none;
+    color:darkblue;
+}
+
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: white;
+        }
+
+
+
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+        }
+
+        .category {
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .category button {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 992px;
+  font-family: "Helvetica";
+}
+
+
+.navbar{
+  height: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.navbar #logo {
+  line-height: 60px;
+}
+.navbar #logo img{
+  vertical-align: middle;
+}
+
+.navbar #menu {
+  float: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+.navbar #menu li {
+  float:left;
+  margin-left: 50px;
+  line-height: 60px;
+}
+
+.navbar #menu li a {
+  text-decoration: none;
+  color: #545454 ;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+.hero-header{
+  height: 50px;
+  background-image: url("../images/hero_header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  
+}
+
+
+.products h3{
+  font-size: 24px;
+  color: #545454;
+  font-weight: bold;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.product-list{
+  width: 735px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product{
+  width: 225px;
+  text-align: center;
+  display: block;
+  color: #545454;
+  text-decoration: none;
+  float: left;
+  margin-left:10px;
+  margin-right: 10px;
+  margin-bottom: 80px;
+  
+}
+
+.product-name{
+  margin-top: 20px;
+  margin-bottom: 4px;
+  
+}
+.clearfix{
+  clear: both;
+}
+
+.footer{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+
+}
+.footer a{
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+</style>
+
+<style>
+  /* 이미지 버튼 스타일 */
+  .category button {
+      width: 100%; /* 버튼 너비를 100%로 설정하여 가로 폭을 화면에 채우도록 함 */
+      height: 200px; /* 버튼 높이 설정 */
+      border: none; /* 버튼 테두리 없애기 */
+      background: transparent; /* 배경을 투명하게 설정 */
+      padding: 0; /* 내부 여백 제거 */
+  }
+  .category button img {
+  width: auto;
+  height: 280%;
+  object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color:darkblue;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+  <body>
+    <div class="navbar">
+      <a href="카테고리.html" id="logo">
+        <img src="image/로고사진.jpg" width="180">
+        </a>
+        <ul id="menu">
+          <li><a href="#" onclick="sing()">고객센터</a></li>
+        <li><a href="#" onclick="hhh()">장바구니</a></li>
+        <li><a href="#" onclick="log()">로그인</a></li>
+        </ul>
+    </div>
+
+    <div class="hero-header"></div>
+ 
+
+    <div class="categories">
+      <div class="category">
+          <button onclick="showContent('samsung')">
+              <img src="samsung.png" alt="삼성">
+          </button>
+          <div id="samsungContent" class="content">
+              <section id="samsung">
+                  <ul>
+                      <li><a href="갤럭시 S23 시리즈.html">핸드폰</a></li>
+                      <li><a href="갤럭시 태블릿 시리즈.html">태블릿</a></li>
+                      <li><a href="갤럭시 북 시리즈.html">노트북</a></li>
+                  </ul>
+              </section>
+          </div>  
+      </div>
+  </div>
+
+    
+  <div class="categories">
+    <div class="category">
+        <button onclick="showContent('apple')">
+            <img src="apple.png" alt="애플">
+        </button>
+        <div id="appleContent" class="content">
+            <section id="apple">
+                <ul>
+                    <li><a href="애플 핸드폰 시리즈.html">핸드폰</a></li>
+                    <li><a href="애플 태블릿 시리즈.html">태블릿</a></li>
+                    <li><a href="애플 맥북 시리즈.html">노트북</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+    
+<div class="categories">
+  <div class="category">
+      <button onclick="showContent('xiaomi')">
+          <img src="xiaomi.png" alt="샤오미">
+      </button>
+      <div id="xiaomiContent" class="content">
+          <section id="xiaomi">
+              <ul>
+                  <li><a href="샤오미 핸드폰.html">핸드폰</a></li>
+                  <li><a href="샤오미 태블릿.html">태블릿</a></li>
+                  <li><a href="샤오미 노트북.html">노트북</a></li>
+              </ul>
+          </section>
+      </div>
+  </div>
+</div>
+
+
+      <div class="footer">
+        <a href="카테고리.html">
+          <img src="image/로고사진.jpg"height="100">
+        </a>
+      </div>
+      
+      
+      <script>
+     document.addEventListener("DOMContentLoaded", function () {
+  const categoryContents = document.querySelectorAll('.category .content');
+
+  categoryContents.forEach(function (content) {
+    content.style.display = 'none'; // 페이지 로드 시 모든 카테고리 숨기기
+  });
+
+  const categoryButtons = document.querySelectorAll('.category button');
+
+  categoryButtons.forEach(function (button, index) {
+    button.addEventListener("click", function () {
+      const currentContent = categoryContents[index];
+
+      const displayStyle = window.getComputedStyle(currentContent).getPropertyValue('display');
+
+      if (displayStyle === 'none' || displayStyle === '') {
+        categoryContents.forEach(function (content) {
+          content.style.display = 'none';
+        });
+        currentContent.style.display = 'block';
+      } else {
+        currentContent.style.display = 'none';
+      }
+    });
+  });
+});
+
+function sing() {
+      
+      window.open('고객문의.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+  
+    }
+  
+    function hhh() {
+      
+      window.open('장바구니.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+  
+    function log() {
+      
+      window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
+    }
+  
+    function showContent(contentId) {
+    }
+
+
+
+      </script>
+
+</body>
+
+</html>
+
+
+
+

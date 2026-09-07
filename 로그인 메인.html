@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Main Screen</title>
+
+    <style>
+
+       *{
+          margin: 0;
+          padding: 0;
+        }
+
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: white;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+        }
+
+        .category {
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .category button {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        * {
+  box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color:darkblue;
+}
+    </style>
+
+</head>
+
+<body>
+
+  <body>
+
+
+    <div class="categories">
+        <div class="category">
+          
+          <button id="samsungBtn" onclick="showContent('samsung'); openPopup()">로그인</button>
+          <div id="samsungContent" class="content">
+            <section id="samsung">
+            </section>
+          </div>
+        </div>
+      
+        <div class="category">
+          <button id="appleBtn" onclick="showContent('apple'); fing()">회원가입</button>
+          <div id="appleContent" class="content">
+            <section id="apple">
+            </section>
+          </div>
+        </div>
+
+        <div class="category">
+          <button id="appleBtn" onclick="showContent('apple'); sing()">로그아웃</button>
+          <div id="appleContent" class="content">
+            <section id="xiaomi">
+            </section>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        function openPopup() {
+          
+          window.open('로그인.html', 'Popup', 'width=400,height=400');
+        }
+      
+        function showContent(contentId) {
+        }
+
+        function fing() {
+          
+          window.open('회원가입.html', 'Popup', 'width=400,height=400');
+        }
+
+        function sing() {
+          
+          window.open('로그아웃.html', 'Popup', 'width=400,height=400');
+        }
+      
+      
+   
+
+
+      </script>
+      
+
+</body>
+
+</html>
