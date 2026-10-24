@@ -1,0 +1,16 @@
+**
+!Dockerfile
+!deploy/
+!deploy/nginx.conf
+!*.html
+!*.css
+!*.js
+!*.jpg
+!*.png
+!image/
+!image/*.jpg
+!image/*.jpeg
+!image/*.png
+!image/*.PNG
+!image/*.webp
+!image/*.avif

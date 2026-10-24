@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>쇼핑몰 결제창</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     a {
     text-decoration: none;
@@ -79,9 +78,10 @@
   </style>
 </head>
 <body>
+    <p role="note">학술제 데모입니다. 실제 개인정보를 입력하지 마세요. 인증·주문·결제는 처리되지 않습니다.</p>
   <div class="checkout-container">
     <h2>주문 상세 정보</h2>
-    <form id="checkoutForm">
+    <form id="checkoutForm" onsubmit="return false;">
       <label for="shippingAddress">배송지 주소:</label>
       <textarea id="shippingAddress" required></textarea>
 
