@@ -1,4 +1,6 @@
 FROM nginx:1.28-alpine
+ARG REVISION_SHA
+LABEL org.opencontainers.image.revision=$REVISION_SHA
 
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm -rf /usr/share/nginx/html/*
