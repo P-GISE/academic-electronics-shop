@@ -1,47 +1,83 @@
-# 정적 데모 배포 준비
+# 쇼핑몰 배포와 운영
 
-이 사이트는 학술제 발표용 HTML/CSS/JavaScript 데모다. 실제 회원 인증, 주문 저장, 결제, 문의 접수, DB는 없다. 기존 로그인·가입·결제 성공 메시지는 화면 시연일 뿐이다. 실제 개인정보를 입력하지 않는다. 폼 전송은 브라우저와 nginx CSP에서 차단한다.
+공개 주소는 [shop.pigs0516.com](https://shop.pigs0516.com/)이다. HTML/CSS/JavaScript로 만든 학술제 정적 데모이며 회원 인증·주문 저장·결제·문의 접수·DB는 없다. 폼 전송은 브라우저와 nginx CSP에서 차단한다. 실제 개인정보를 입력하지 않는다.
 
-## 패키지와 공개 경계
+## 현재 상태
 
-- nginx가 `/`에서 기존 `메인.html`을 UTF-8로 제공한다. 한글·공백·대소문자 파일명을 유지한다. SPA fallback은 없고 잘못된 경로는 404다.
-- Docker에는 허용된 정적 HTML/CSS/JS/이미지와 nginx 설정만 복사한다. `.git`, `.env`, 문서, 테스트, 개인 설정은 포함하지 않는다. HTML·이미지 자체에 개인 자료를 새로 넣지 않는다.
-- 제품 CSS/레이아웃을 유지했다. 원래 없던 `styles.css`, `css/styles.css`, `../images/hero_header.jpg` 참조만 제거했다. 백신이 삽입한 외부 스크립트와 문의 화면의 기존 개인 연락처도 제거했다.
-- 장바구니 아이콘은 기존 Font Awesome 5.6.3 CDN(`use.fontawesome.com`)과 SRI를 유지한다. 외부 서버에 브라우저 IP가 전달될 수 있으며, 오프라인이면 아이콘이 표시되지 않을 수 있다. 다른 외부 스크립트/API 요청은 필요하지 않다.
-- 기존 상품 사진과 로고의 공개 사용 권리는 확인되지 않았다. 운영 공개 전에 소유자가 출처·권리 및 이미지 안의 개인정보를 확인해야 한다. 이번 준비는 이미지 전체의 수동 검수를 의미하지 않는다.
-- HTTP GET/HEAD만 제공하고 접근 로그는 끈다. 데이터 저장/volume, DB, 인증 비밀, 결제 키는 없다. 기존 서버·DNS·터널은 변경하지 않는다.
+2026-10-25 기준 앱 설치·Cloudflare 전용 주소 연결·자동배포 타이머 활성화를 확인했다. 공개 `/healthz`는 HTTPS 200이다. 최초 운영 배포 기준은 [`7a325ee`](https://github.com/P-GISE/academic-electronics-shop/commit/7a325eeaf168217d6e044daa7d6aade29275429e)이며, 이후 실제 실행 버전은 서버의 `deployed.json`과 컨테이너 이미지로 확인한다.
 
-## 사전 조건 및 설정
+HTTP 접속은 같은 호스트·경로·쿼리를 보존해 HTTPS로 301 전환한다. 후속 GitHub 커밋의 자동 반영은 이 문서 작성 시점에 별도 검증 중이다. 타이머 활성화만으로 자동배포 전체 경로를 검증했다고 기록하지 않는다.
 
-Linux Docker Engine과 Docker Compose v2가 필요하다. 개발 PC의 Windows Docker CLI만으로는 Linux 이미지 검증이 되지 않는다. CI는 PR 및 `main`, `codex/deployment-prep-20261024` push에서 정적 검사와 실제 이미지 HTTP smoke만 수행하며 운영 배포는 하지 않는다.
+## 프로젝트 경계
 
-`.env.example`을 `.env`로 복사하고 다음 두 값을 정한다. 누락하면 Compose가 시작 전에 실패한다.
+| 항목 | 설정 |
+|---|---|
+| 소스·운영 브랜치 | `P-GISE/academic-electronics-shop`, `main` |
+| 실행 위치 | 기존 AWS S2의 `/opt/academic-shop` |
+| Compose 프로젝트·서비스 | `academic-electronics-shop` / `web` |
+| 컨테이너 | `academic-electronics-shop-web-1` |
+| 포트·상태 검사 | `127.0.0.1:3501` → 컨테이너 `8080`, `/healthz` |
+| Cloudflare | `shop.pigs0516.com` → 기존 `factlens-ai` 터널 → `http://127.0.0.1:3501` |
+| 네트워크·저장 | 프로젝트 전용 기본 bridge, DB·영속 볼륨 없음, nginx 임시 파일만 tmpfs |
+| 설정 | `/opt/academic-shop/.env`, `compose.production.yaml`, `compose.image.yaml` |
+| 배포 상태 | `/var/lib/five-sites-deploy/academic-shop/deployed.json` |
+| 배포 설정·타이머 | `/etc/five-sites-deploy/academic-shop.json`, `five-sites-deploy@academic-shop.timer` |
 
-| 키 | 목적 |
-| --- | --- |
-| `HTTP_PORT` | 승인된 미사용 loopback 포트. 예제 18085는 예약값이 아니다. |
-| `IMAGE_TAG` | 검토된 Git commit SHA. 롤백을 위해 이전 이미지도 보존한다. |
+`HTTP_PORT=3501`, `IMAGE_TAG=<최초 검토 SHA>`, `DEPLOY_IMAGE=sha256:<검증한 이미지 ID>`를 서버의 root 전용 `.env`에 둔다. 실제 실행 이미지는 `compose.image.yaml`의 `DEPLOY_IMAGE`가 결정한다. 자동 업데이트는 `IMAGE_TAG` 대신 `DEPLOY_IMAGE`와 배포 상태의 SHA를 갱신한다. 세 설정 파일은 root:root 0600으로 관리하며 Git에 운영 `.env`를 올리지 않는다.
 
-서버용 비밀이나 브라우저 환경 변수는 없다. 기본 Compose network는 프로젝트 이름 `academic-electronics-shop`으로 분리된다. 같은 호스트에 추가 인스턴스를 설치할 때는 별도 프로젝트 이름과 포트를 지정한다.
+프로젝트별 경로·컨테이너·네트워크는 분리되지만 AWS 서버, Docker daemon, Cloudflare 터널 프로세스는 다른 서비스와 공유한다. 서버 장애까지 격리된 구조는 아니다. 신규 유료 서버나 DB는 만들지 않았다.
 
-## 설치와 검증 (승인된 대상에서만 실행)
+## GitHub 업데이트가 반영되는 흐름
 
-```bash
-cp .env.example .env
-# .env의 HTTP_PORT와 IMAGE_TAG를 검토된 값으로 편집
-python scripts/check_static.py
-docker compose -f compose.production.yaml config --quiet
-docker compose -f compose.production.yaml build --pull
-docker compose -f compose.production.yaml up -d --wait
-# .env에 선택한 실제 포트 사용
-python scripts/check_static.py --base-url http://127.0.0.1:18085
-docker compose -f compose.production.yaml ps
+```text
+main에 변경 병합
+  → GitHub CI: 정적 참조·실제 nginx HTTP 검사
+  → five-sites-app-<SHA> 이미지 아티팩트 게시
+  → AWS 타이머가 성공한 동일 커밋을 확인
+  → 이미지 검증 후 web 서비스만 교체
+  → health·다른 컨테이너 보존 확인 또는 이전 이미지 복구
 ```
 
-HTTP 검사는 루트 내용·UTF-8·CSP, 한글/공백/대소문자 포함 모든 참조 자산의 바이트 일치, `/healthz`, 비공개 파일 차단, POST 차단을 확인한다. 별도로 브라우저에서 메인→카테고리→상품→구매 화면과 장바구니를 시연한다. 이 검증을 실제 인증/결제 성공으로 해석하지 않는다.
+CI는 [ci.yml](../.github/workflows/ci.yml)에 정의돼 있다. HTML·로컬 자산의 경로와 바이트, UTF-8·CSP, 비공개 파일 접근과 POST 차단을 검사한 이미지 자체를 게시한다. 아티팩트에는 `image.tar.gz`, `image.sha256`, `revision.txt`만 담고 14일 보관한다. PR과 수동 실행의 성공은 운영 배포 대상이 아니다.
 
-공개 도메인·TLS·리버스 프록시·접근 정책은 별도 승인 후 기존 인프라 담당자가 적용한다. 컨테이너는 `127.0.0.1`에만 바인딩되며 직접 인터넷에 공개되지 않는다. 프록시에서도 민감한 URL 쿼리를 로그에 남기지 않도록 검토한다.
+서버의 root 소유 `/usr/local/lib/five-sites-deploy/poll.py`가 기존 Ubuntu GitHub 인증으로 저장소·브랜치·push 이벤트·워크플로·현재 SHA·CI 성공을 확인한다. ZIP digest, 이미지 archive 체크섬, SHA 태그와 OCI revision을 검사한 뒤 불변 이미지 ID로 실행한다. 배포 직전 GitHub HEAD가 바뀌면 적용을 중단한다.
 
-## 업데이트와 롤백
+타이머는 부팅 약 3분 뒤부터 약 2분 간격에 최대 30초 지연을 더해 확인한다. CI와 다운로드·교체 시간도 필요하다. GitHub 업데이트마다 AWS 서버 전체를 재부팅하지 않는다. 배포기는 `web`만 `up -d --no-deps --no-build --pull never`로 교체하며 짧은 서비스 중단은 생길 수 있다. Tailscale과 외부에서 들어오는 배포 SSH는 필요하지 않다.
 
-배포 전 현재 `.env`의 이미지 태그와 검토된 소스 commit을 기록하고 이전 이미지를 삭제하지 않는다. 새 commit에서 새 태그로 build 후 `up -d --wait`와 HTTP 검사를 실행한다. 실패하면 `.env`의 `IMAGE_TAG`를 보존한 이전 태그로 되돌리고 `docker compose -f compose.production.yaml up -d --no-build --wait`를 실행한다. HTTP 검사는 해당 이전 소스 checkout의 스크립트로 수행한다. 이미지가 없으면 이전 commit에서 재빌드해야 한다. DB/migration/seed/업로드 복구는 없다. 중지는 `docker compose -f compose.production.yaml down`이다.
+다음 변경은 자동 적용을 멈추고 운영 검토를 요구한다: `.github/`, `deploy/`, `scripts/`, DB·migration·schema·model·entity 경로, SQL, Dockerfile·`.dockerignore`, 이름에 `compose`가 포함된 파일 등 배포기가 보호하는 정의. 이 사이트에서는 특히 `deploy/nginx.conf` 변경도 해당한다. 일반 HTML/CSS/JS·이미지·문서 변경은 CI 통과 후 자동 적용 대상이다. 보호 경로 변경 시 검토된 서버 정의와 실행 이미지·배포 기준을 함께 갱신한다.
+
+## 최초 설치와 상태 확인
+
+최초 설치는 인프라 작업 공간에서 검토한 설치 번들로 수행했다. 설치기는 기존 경로·동일 프로젝트 자원·점유 포트가 있으면 중단하고, 성공한 운영 브랜치 CI 이미지와 검토된 Compose의 Git blob을 대조한다. 새 앱만 시작한 뒤 다른 컨테이너 ID·시작 시각·재시작 횟수·마운트가 유지됐는지 검사한다. 타이머는 앱 검증 후 별도로 활성화한다.
+
+아래 명령은 운영 담당자의 상태 확인용이다. 사용자가 직접 서버 명령을 실행할 필요는 없다.
+
+```sh
+sudo systemctl is-enabled five-sites-deploy@academic-shop.timer
+sudo systemctl is-active five-sites-deploy@academic-shop.timer
+sudo systemctl status five-sites-deploy@academic-shop.service --no-pager
+sudo cat /var/lib/five-sites-deploy/academic-shop/deployed.json
+sudo docker inspect academic-electronics-shop-web-1 --format '{{.Image}} {{.State.Health.Status}}'
+curl --fail http://127.0.0.1:3501/healthz
+curl --fail https://shop.pigs0516.com/healthz
+```
+
+후속 커밋을 운영 브랜치에 병합한 뒤 CI 성공 → 서버 상태 SHA/이미지 변경 → 공개 화면·자산 → 다른 서비스 보존 순서로 확인한다. CI 성공이나 `/healthz` 200 하나만으로 상품·장바구니 흐름을 검증했다고 기록하지 않는다. 컨테이너 전체 inspect나 `.env` 원문을 공개 로그에 남기지 않는다.
+
+## 실패와 롤백
+
+검증 실패·CI 대기·보호 파일 변경은 실행 앱을 바꾸지 않는다. 앱 교체가 시작되면 `in-progress`와 `previous-environment`를 비공개 상태 디렉터리에 남긴다. 새 앱 health 또는 다른 컨테이너 보존 검사에 실패하면 이전 환경 파일·이미지·배포 상태를 복원하고 `in-progress`를 남겨 자동 재시도를 차단한다. 강제 종료 후에도 표식을 확인해 운영 복구를 요구한다.
+
+수동 복구는 해당 타이머부터 중지한다.
+
+```sh
+sudo systemctl stop five-sites-deploy@academic-shop.timer
+```
+
+진행 중인 배포 서비스와 `in-progress`의 이전 SHA/이미지, `deployed.json`, `.env`, 실제 컨테이너를 대조한다. 이전 이미지가 로컬에 있고 `previous-environment`가 그 이미지와 일치할 때만 환경 파일을 root 0600으로 복원하고 두 Compose 파일을 사용해 `web`만 교체한다. 이전 버전 health·공개 화면·다른 컨테이너 보존을 확인한 뒤 배포 상태를 실제 SHA/이미지와 맞추고 실패 표식을 처리한다. 검증 전 표식을 지우거나 새 커밋으로 기준을 강제 갱신하지 않는다.
+
+새 도메인 연결을 되돌릴 때는 `shop.pigs0516.com`의 DNS·터널 경로와 해당 호스트 전용 규칙만 대상이다. 기존 서비스의 DNS와 공유 터널 자체를 삭제하지 않는다. DB 복구는 없으며 이전 이미지는 복구가 끝날 때까지 보존한다.
+
+## 기능·검증 한계
+
+기존 상품 사진과 로고의 공개 사용 권리는 별도 확인 대상이다. 장바구니 아이콘은 Font Awesome CDN을 사용하므로 네트워크에 따라 표시되지 않을 수 있다. 로그인·가입·결제 화면은 시연 UI이고 실제 계정·주문·결제를 만들지 않는다. 브라우저에서 메인→카테고리→상품→구매 화면과 장바구니 계산을 별도로 확인한다.
