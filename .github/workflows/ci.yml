@@ -23,17 +23,20 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
+      - name: Verify runtime security gate regressions
+        run: python -m unittest discover -s scripts/security -p test_image_gate.py -v
       - name: Validate static references and demo boundaries
         run: python scripts/check_static.py
       - name: Build and start static image
         run: |
           docker compose -f compose.production.yaml build --build-arg REVISION_SHA="$GITHUB_SHA"
           docker compose -f compose.production.yaml up -d --wait
+      - name: Gate the actual built runtime image OS packages
+        run: |
+          image_id=$(docker image inspect academic-electronics-shop:ci --format '{{.Id}}')
+          bash scripts/security/scan-image.sh "$image_id"
       - name: Check root, Korean assets and public boundaries
         run: python scripts/check_static.py --base-url http://127.0.0.1:18085
-      - name: Container logs
-        if: always()
-        run: docker compose -f compose.production.yaml logs --no-color
       - name: Clean up synthetic runtime
         if: always()
         run: docker compose -f compose.production.yaml down
