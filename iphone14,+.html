@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apple Iphone 14, 14 Plus</title>
-  </head>
+    <script src="event-handlers.js" defer></script>
+</head>
 
   <style>
     * {
@@ -146,32 +147,7 @@ body {
 }
         
   </style>
-   <script>
-    function sing() {
-    
-    window.open('고객문의.html', 'Popup', 'width=400,height=400');
-  }
-
-  function showContent(contentId) {
-
-  }
-
-  function hhh() {
-    
-    window.open('장바구니.html', 'Popup', 'width=400,height=400');
-  }
-
-  function showContent(contentId) {
-  }
-
-  function log() {
-    
-    window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
-  }
-
-  function showContent(contentId) {
-  }
-  </script>
+   <script src="page-87e6ff72122e.js"></script>
 
   <body>
     <div class="navbar">
@@ -179,9 +155,9 @@ body {
         <img src="image/로고사진.jpg" width="180">
         </a>
         <ul id="menu">
-          <li><a href="#" onclick="sing()">고객센터</a></li>
-        <li><a href="#" onclick="hhh()">장바구니</a></li>
-        <li><a href="#" onclick="log()">로그인</a></li>
+          <li><a href="#" data-onclick="customerSupport">고객센터</a></li>
+        <li><a href="#" data-onclick="cart">장바구니</a></li>
+        <li><a href="#" data-onclick="signIn">로그인</a></li>
         </ul>
     </div>
     <div class="hero-header"></div>  
@@ -220,7 +196,7 @@ body {
 
 <section>
   <h2>구매 링크</h2>
-  <p><button onclick="validateSelection()"><a href="iphone 14, 14+ 구매창.html">구매하기</a></button></p>
+  <p><button data-onclick="validateSelection"><a href="iphone 14, 14+ 구매창.html">구매하기</a></button></p>
 </section>
 
   <footer>

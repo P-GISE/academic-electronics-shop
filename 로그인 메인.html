@@ -58,6 +58,7 @@ a {
 }
     </style>
 
+  <script src="event-handlers.js" defer></script>
 </head>
 
 <body>
@@ -68,7 +69,7 @@ a {
     <div class="categories">
         <div class="category">
           
-          <button id="samsungBtn" onclick="showContent('samsung'); openPopup()">로그인</button>
+          <button id="samsungBtn" data-onclick="samsungPopup">로그인</button>
           <div id="samsungContent" class="content">
             <section id="samsung">
             </section>
@@ -76,7 +77,7 @@ a {
         </div>
       
         <div class="category">
-          <button id="appleBtn" onclick="showContent('apple'); fing()">회원가입</button>
+          <button id="appleBtn" data-onclick="appleFind">회원가입</button>
           <div id="appleContent" class="content">
             <section id="apple">
             </section>
@@ -84,7 +85,7 @@ a {
         </div>
 
         <div class="category">
-          <button id="appleBtn" onclick="showContent('apple'); sing()">로그아웃</button>
+          <button id="appleBtn" data-onclick="appleSupport">로그아웃</button>
           <div id="appleContent" class="content">
             <section id="xiaomi">
             </section>
@@ -92,30 +93,7 @@ a {
         </div>
       </div>
       
-      <script>
-        function openPopup() {
-          
-          window.open('로그인.html', 'Popup', 'width=400,height=400');
-        }
-      
-        function showContent(contentId) {
-        }
-
-        function fing() {
-          
-          window.open('회원가입.html', 'Popup', 'width=400,height=400');
-        }
-
-        function sing() {
-          
-          window.open('로그아웃.html', 'Popup', 'width=400,height=400');
-        }
-      
-      
-   
-
-
-      </script>
+      <script src="page-200cf81c46a4.js"></script>
       
 
 </body>

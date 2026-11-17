@@ -4,62 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galaxy Z 폴드</title>
-  <script>
-    function validateSelection() {
-      const selectedColorButton = document.querySelector('.color-button.selected');
-      const storageOptions = document.querySelectorAll('[name="storage"]');
-
-      if (!selectedColorButton) {
-        alert('색상을 선택하세요.');
-        return;
-      }
-
-      let selectedStorageCount = 0;
-      storageOptions.forEach(option => {
-        if (option.checked) {
-          selectedStorageCount++;
-        }
-      });
-
-      if (selectedStorageCount !== 1) {
-        alert('저장 용량을 하나만 선택하세요.');
-        return;
-      }
-
-      window.location.href = '결제창.html';
-    }
-
-    function toggleButton(button) {
-      const colorButtons = document.querySelectorAll('.color-button');
-      colorButtons.forEach(btn => btn.classList.remove('selected'));
-      button.classList.add('selected');
-    }
-
-    function sing() {
-      
-      window.open('고객문의.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-  
-    }
-  
-    function hhh() {
-      
-      window.open('장바구니.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-    }
-  
-    function log() {
-      
-      window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-    }
-  </script>
+  <script src="page-733739ad519c.js"></script>
   <style>
   
 
@@ -229,6 +174,7 @@ body {
     color:darkblue;
 }
   </style>
+  <script src="event-handlers.js" defer></script>
 </head>
 <body>
   <div class="navbar">
@@ -236,9 +182,9 @@ body {
       <img src="image/로고사진.jpg" width="180">
       </a>
       <ul id="menu">
-        <li><a href="#" onclick="sing()">고객센터</a></li>
-        <li><a href="#" onclick="hhh()">장바구니</a></li>
-        <li><a href="#" onclick="log()">로그인</a></li>
+        <li><a href="#" data-onclick="customerSupport">고객센터</a></li>
+        <li><a href="#" data-onclick="cart">장바구니</a></li>
+        <li><a href="#" data-onclick="signIn">로그인</a></li>
       </ul>
   </div>
   <div class="hero-header"></div> 
@@ -250,11 +196,11 @@ body {
     <div class="iphone-details">
       <h2>Galaxy Z Fold5</h2>
       <div class="color-options">
-        <button class="color-button color-button1" onclick="toggleButton(this)"></button>
-        <button class="color-button color-button2" onclick="toggleButton(this)"></button>
-        <button class="color-button color-button3" onclick="toggleButton(this)"></button>
-        <button class="color-button color-button4" onclick="toggleButton(this)"></button>
-        <button class="color-button color-button5" onclick="toggleButton(this)"></button>
+        <button class="color-button color-button1" data-onclick="selectColor"></button>
+        <button class="color-button color-button2" data-onclick="selectColor"></button>
+        <button class="color-button color-button3" data-onclick="selectColor"></button>
+        <button class="color-button color-button4" data-onclick="selectColor"></button>
+        <button class="color-button color-button5" data-onclick="selectColor"></button>
       </div>
       <div class="storage-options">
         <span class="storage-option">
@@ -279,7 +225,7 @@ body {
         </span>
       </div>
 
-      <button onclick="validateSelection()">구매하기</button>
+      <button data-onclick="validateSelection">구매하기</button>
     </div>
   </div>
   <div class="footer">

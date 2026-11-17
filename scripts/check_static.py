@@ -21,7 +21,10 @@ class References(HTMLParser):
         attrs = dict(attrs)
         self.urls.extend(attrs[key] for key in ("src", "href") if attrs.get(key))
         if tag == "form":
-            assert attrs.get("onsubmit") == "return false;", "Demo form can submit data"
+            assert attrs.get("data-onsubmit") == "blockSubmit", "Demo form can submit data"
+        assert not any(key.startswith("on") for key in attrs), "Inline event handler remains"
+        if tag == "script":
+            assert attrs.get("src"), "Inline script remains"
 
 
 def check(base_url=None):
@@ -39,7 +42,7 @@ def check(base_url=None):
         for url in urls:
             parts = urlsplit(url)
             if parts.scheme or parts.netloc:
-                assert url == EXTERNAL or parts.scheme == "javascript", f"Unexpected external URL in {path.name}"
+                assert url == EXTERNAL, f"Unexpected external URL in {path.name}"
                 continue
             if not parts.path:
                 continue

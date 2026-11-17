@@ -66,11 +66,12 @@
     color:darkblue;
 }
     </style>
+  <script src="event-handlers.js" defer></script>
 </head>
 
 <body>
     <p role="note">학술제 데모입니다. 실제 개인정보를 입력하지 마세요. 인증·주문·결제는 처리되지 않습니다.</p>
-    <form onsubmit="return false;">
+    <form data-onsubmit="blockSubmit">
         <label for="username">사용자</label>
         <input type="text" id="username" name="username" required>
 
@@ -84,31 +85,9 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required>
         <span id="passwordError" class="error-message">비밀번호가 일치하지 않습니다.</span>
 
-        <button type="button" onclick="login()">가입하기</button>
+        <button type="button" data-onclick="login">가입하기</button>
     </form>
 
-    <script>
-        function login() {
-            if (validateForm()) {
-                alert("가입되었습니다.");
-                // Redirect to a specific page after login (replace 'your_page.html' with the actual page URL)
-                window.location.href = '카테고리.html';
-            }
-        }
-
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-            var errorSpan = document.getElementById("passwordError");
-
-            if (password !== confirmPassword) {
-                errorSpan.style.display = "block";
-                return false;
-            } else {
-                errorSpan.style.display = "none";
-                return true;
-            }
-        }
-    </script>
+    <script src="page-b74c76840c2d.js"></script>
 </body>
 </html>
