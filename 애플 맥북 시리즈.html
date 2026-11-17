@@ -3,7 +3,8 @@
   <head>
     <title>모여모사</title>
     <meta charset="utf-8" />
-  </head>
+    <script src="event-handlers.js" defer></script>
+</head>
 
   <style>
     * {
@@ -118,9 +119,9 @@ a {
         <img src="image/로고사진.jpg" width="180">
         </a>
         <ul id="menu">
-          <li><a href="#" onclick="sing()">고객센터</a></li>
-        <li><a href="#" onclick="hhh()">장바구니</a></li>
-        <li><a href="#" onclick="log()">로그인</a></li>
+          <li><a href="#" data-onclick="customerSupport">고객센터</a></li>
+        <li><a href="#" data-onclick="cart">장바구니</a></li>
+        <li><a href="#" data-onclick="signIn">로그인</a></li>
         </ul>
     </div>
     <div class="hero-header"></div>  
@@ -212,31 +213,6 @@ a {
         
 
     </div>
-    <script>
-      function sing() {
-      
-      window.open('고객문의.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-  
-    }
-  
-    function hhh() {
-      
-      window.open('장바구니.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-    }
-  
-    function log() {
-      
-      window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
-    }
-  
-    function showContent(contentId) {
-    }
-    </script>
+    <script src="page-bb0b5803d558.js"></script>
   </body>
 </html>

@@ -76,12 +76,13 @@
       margin-top: 10px;
     }
   </style>
+  <script src="event-handlers.js" defer></script>
 </head>
 <body>
     <p role="note">학술제 데모입니다. 실제 개인정보를 입력하지 마세요. 인증·주문·결제는 처리되지 않습니다.</p>
   <div class="checkout-container">
     <h2>주문 상세 정보</h2>
-    <form id="checkoutForm" onsubmit="return false;">
+    <form id="checkoutForm" data-onsubmit="blockSubmit">
       <label for="shippingAddress">배송지 주소:</label>
       <textarea id="shippingAddress" required></textarea>
 
@@ -95,40 +96,16 @@
         <option value="bankTransfer">계좌이체</option>
       </select>
 
-      <button type="button" onclick="processPayment()">결제하기</button>
+      <button type="button" data-onclick="processPayment">결제하기</button>
     </form>
 
     <!-- 결제 완료 메시지 -->
     <div id="purchaseCompleteMessage" class="purchase-message">
       <p>결제가 완료되었습니다!</p>
-      <button onclick="redirectToMain()">확인</button>
+      <button data-onclick="goToMain">확인</button>
     </div>
   </div>
 
-  <script>
-    function processPayment() {
-      // 입력된 정보 가져오기
-      const shippingAddress = document.getElementById('shippingAddress').value;
-      const quantity = document.getElementById('quantity').value;
-      const paymentMethod = document.getElementById('paymentMethod').value;
-
-      // 여기에서 서버로 결제 정보 전송하는 로직을 추가해야 합니다.
-
-      // 결제 완료 메시지 표시
-      displayPurchaseMessage();
-    }
-
-    function displayPurchaseMessage() {
-      const purchaseMessage = document.getElementById('purchaseCompleteMessage');
-      purchaseMessage.style.display = 'block';
-    }
-
-    function redirectToMain() {
-      // 여기에서 실제 메인 페이지로의 이동 로직을 추가합니다.
-      // 예를 들어, 현재는 경고창을 띄우는 예시를 제공합니다.
-      alert('메인 페이지로 이동합니다.');
-      window.location.href = '카테고리.html';
-    }
-  </script>
+  <script src="page-12c5999e6273.js"></script>
 </body>
 </html>

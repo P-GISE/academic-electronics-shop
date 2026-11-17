@@ -58,12 +58,13 @@
     color:darkblue;
 }
     </style>
+  <script src="event-handlers.js" defer></script>
 </head>
 <body>
 
     <h1>고객센터</h1>
 
-    <form onsubmit="return false;">
+    <form data-onsubmit="blockSubmit">
         <label for="name">이름</label>
         <input type="text" id="name" name="name" required>
 

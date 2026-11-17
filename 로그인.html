@@ -60,40 +60,21 @@
     color:darkblue;
 }
     </style>
+  <script src="event-handlers.js" defer></script>
 </head>
 
 <body>
     <p role="note">학술제 데모입니다. 실제 개인정보를 입력하지 마세요. 인증·주문·결제는 처리되지 않습니다.</p>
-    <form id="signupForm" onsubmit="return false;">
+    <form id="signupForm" data-onsubmit="blockSubmit">
         <label for="email">이메일:</label>
         <input type="email" id="email" name="email" required>
 
         <label for="password">비밀번호:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="button" onclick="login()">로그인</button>
+        <button type="button" data-onclick="login">로그인</button>
     </form>
 
-    <script>
-        function login() {
-            alert("로그인되었습니다.");
-            // Redirect to a specific page after login (replace 'your_page.html' with the actual page URL)
-            window.location.href = '카테고리.html';
-        }
-
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-            var errorSpan = document.getElementById("passwordError");
-
-            if (password !== confirmPassword) {
-                errorSpan.textContent = "비밀번호가 일치하지 않습니다.";
-                return false;
-            } else {
-                errorSpan.textContent = "";
-                return true;
-            }
-        }
-    </script>
+    <script src="page-bbc242599fd5.js"></script>
 </body>
 </html>

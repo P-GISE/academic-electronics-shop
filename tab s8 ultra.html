@@ -3,7 +3,8 @@
   <head>
     <title>Galaxy Tab S8 Ultra</title>
     <meta charset="utf-8" />
-  </head>
+    <script src="event-handlers.js" defer></script>
+</head>
 
   <style>
     * {
@@ -139,32 +140,7 @@ body {
 }
   </style>
 
-<script>
-  function sing() {
-  
-  window.open('고객문의.html', 'Popup', 'width=400,height=400');
-}
-
-function showContent(contentId) {
-
-}
-
-function hhh() {
-  
-  window.open('장바구니.html', 'Popup', 'width=400,height=400');
-}
-
-function showContent(contentId) {
-}
-
-function log() {
-  
-  window.open('로그인 메인.html', 'Popup', 'width=400,height=400');
-}
-
-function showContent(contentId) {
-}
-</script>
+<script src="page-32fbd4d26f94.js"></script>
 
   <body>
     <div class="navbar">
@@ -172,9 +148,9 @@ function showContent(contentId) {
         <img src="image/로고사진.jpg" width="180">
         </a>
         <ul id="menu">
-          <li><a href="#" onclick="sing()">고객센터</a></li>
-        <li><a href="#" onclick="hhh()">장바구니</a></li>
-        <li><a href="#" onclick="log()">로그인</a></li>
+          <li><a href="#" data-onclick="customerSupport">고객센터</a></li>
+        <li><a href="#" data-onclick="cart">장바구니</a></li>
+        <li><a href="#" data-onclick="signIn">로그인</a></li>
         </ul>
     </div>
   
@@ -214,7 +190,7 @@ function showContent(contentId) {
 
 <section>
   <h2>구매 링크</h2>
-  <p><button onclick="validateSelection()"><a href="갤럭시 탭 s8 울트라 구매창.html">구매하기</a></button></p>
+  <p><button data-onclick="validateSelection"><a href="갤럭시 탭 s8 울트라 구매창.html">구매하기</a></button></p>
 </section>
 
   <footer>
